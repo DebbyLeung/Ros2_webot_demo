@@ -5,8 +5,7 @@ import time
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
-from rclpy.executors import SingleThreadedExecutor
-
+from rclpy.executors import ExternalShutdownException
 class FunctionId():
     rc =0x01  # 00001-0ffff
     wc = 0x05 # 00001-0ffff
@@ -135,16 +134,20 @@ def main(args=None):
     controller = FeetechController(ser)
 
     
-    rclpy.spin(controller)
 
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically
     # when the garbage collector destroys the node object)
     # controller1.destroy_node()
-    controller.destroy_node()
 
     
-    rclpy.shutdown()
+    try:
+        rclpy.spin(controller)
+    except (KeyboardInterrupt, ExternalShutdownException):
+        pass
+    finally:
+        controller.destroy_node()
+        rclpy.try_shutdown()
     
     
 if __name__ == "__main__":
@@ -156,17 +159,7 @@ if __name__ == "__main__":
         controller.set_pos(2,0,0.5)
     except serial.SerialException as e:
         print(e) 
-        # select_mode(2,0)
-    #     set_pos(2,0,0.5)
-    #     time.sleep(1.5)
-    #     select_mode(2,1)
-    #     set_vel(2,0.1)
-    #     time.sleep(5)
 
-    # finally:
-    #     print("close serial")
-    #     # motor_stop(2)
-    #     ser.close()
 """
 read mode 02 03 00 10 00 01
 17 select mode  02 06 00 10 00 00 xx xx |where data[5] =0 is servo mode
