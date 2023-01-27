@@ -13,7 +13,7 @@ def generate_launch_description():
     robot_description = pathlib.Path(os.path.join(package_dir, 'resource', 'my_robot.urdf')).read_text()
 
     webots = WebotsLauncher(
-        world=os.path.join(package_dir, 'worlds', 'my_world.wbt')
+        world=os.path.join(package_dir, 'worlds', 'factory.wbt')
     )
 
     ros2_supervisor = Ros2SupervisorLauncher()
@@ -36,14 +36,24 @@ def generate_launch_description():
         package='my_package',
         executable='actual_sensor',
     )
-
-    
+    # default name = 'feetech_controller_1'; default id = 1
+    feetech_controller = Node(
+        package='my_package',
+        executable='feetech_controller',
+        name='feetech_controller_2',
+        output="screen",
+        emulate_tty=True,
+        parameters=[
+            {'id': 2},
+        ]
+    )
     return LaunchDescription([
         webots,
         my_robot_driver,
         ros2_supervisor,
         obstacle_avoider,
-        actual_sensor,
+        # actual_sensor,
+        feetech_controller,
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(
                 target_action=webots,

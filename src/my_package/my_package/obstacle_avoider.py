@@ -3,7 +3,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import Range
 from geometry_msgs.msg import Twist
 
-MAX_RANGE = 0.15
+MAX_RANGE = 1.0
 
 
 class ObstacleAvoider(Node):
@@ -18,14 +18,24 @@ class ObstacleAvoider(Node):
 
     def __left_sensor_callback(self, message:Range):
         self.__left_sensor_value = message.range    
+        cmd = Twist()
+        if self.__left_sensor_value < 0.9 * MAX_RANGE and self.__right_sensor_value > 0.9*MAX_RANGE:
+            cmd.angular.z = -2.0
+            self.__publisher.publish(cmd)
+        
     def __real_sensor_callback(self, message:Range):
         self.__real_sensor_value = message.range    
+        
     def __right_sensor_callback(self, message:Range):
         self.__right_sensor_value = message.range
         cmd = Twist()
-        if self.__left_sensor_value < 0.9 * MAX_RANGE or self.__right_sensor_value < 0.9 * MAX_RANGE:
-            cmd.angular.z = -2.0
+        if self.__right_sensor_value < 0.9 * MAX_RANGE and self.__left_sensor_value > 0.9*MAX_RANGE:
+            cmd.angular.z = 2.0
             self.__publisher.publish(cmd)
+        # elif self.__right_sensor_value < 0.9 * MAX_RANGE:
+        if self.__right_sensor_value < 0.9 * MAX_RANGE and self.__left_sensor_value< 0.9 * MAX_RANGE:
+            cmd.angular.z = 3.0
+            self.__publisher.publish(cmd)   
     def __active_cmd_vel(self, message:Twist):
         self.__publisher.publish(message)
 def main(args=None):

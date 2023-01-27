@@ -1,0 +1,9 @@
+install/
+log/
+build/
+.vscode/
+my_package/my_package/.vscode/
+src/projects/
+.vscode/c_cpp_properties.json
+.vscode/settings.json
+*.dae
