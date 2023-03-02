@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<robot name="My robot">
+    <webots>
+        <plugin type="fws_agv_package.fws_robot_driver.MyRobotDriver" />
+    </webots>
+</robot>
+
+
+

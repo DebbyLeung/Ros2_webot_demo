@@ -1,5 +1,5 @@
 # Ros2_webot_demo
-## To build the workspace
+## To build the workspace: bash fws_world_launch.sh
 ```
 cd ~ros2_ws/
 colcon build

@@ -1,0 +1,6 @@
+[console_scripts]
+actual_sensor = my_package.actual_sensor:main
+feetech_controller = my_package.feetech_controller:main
+my_robot_driver = my_package.my_robot_driver:main
+obstacle_avoider = my_package.obstacle_avoider:main
+

@@ -1,0 +1,431 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/floors/protos/CircleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.35426340037699683 -0.017706871550106282 0.9349780264012815 2.095686404050421
+  position 2.461225066145297 -3.239575341888523 -2.303130923593768
+  follow "my_robot"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+CircleArena {
+  radius 10
+}
+Robot {
+  translation 9.459647045933947e-10 -6.515962921546297e-07 -0.023474549907362363
+  rotation -0.0011920594592504184 -0.0002728687412330398 0.9999992522681683 3.1306577419042376e-06
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -5.035761763139135e-08
+        axis 0 0 1
+        anchor -0.08 0.29 0
+      }
+      device [
+        PositionSensor {
+          name "left assist steering sensor"
+          noise 0.01
+          resolution 0.1
+        }
+        RotationalMotor {
+          name "left assist steering motor"
+          maxVelocity 100
+          minPosition -1.57
+          maxPosition 1.57
+        }
+      ]
+      endPoint Solid {
+        translation -0.08 0.29 0.0535
+        rotation 0 0 -1 5.16191365590357e-08
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              position 1.7100223776470625e-08
+              axis 0 1 0
+            }
+            endPoint Solid {
+              rotation 0 1 0 0
+              children [
+                DEF WHEEL Transform {
+                  rotation 1 0 0 1.5707996938995747
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0 0
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry Cylinder {
+                        height 0.047
+                        radius 0.0535
+                      }
+                    }
+                  ]
+                }
+              ]
+              name "left assist wheel "
+              boundingObject DEF WHEEL Transform {
+                rotation 1 0 0 1.5707996938995747
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 1 0 0
+                      roughness 1
+                      metalness 0
+                    }
+                    geometry Cylinder {
+                      height 0.047
+                      radius 0.0535
+                    }
+                  }
+                ]
+              }
+              physics Physics {
+              }
+            }
+          }
+          Solid {
+            children [
+              DEF STEER Transform {
+                translation 0 0 0.02
+                children [
+                  Shape {
+                    appearance Appearance {
+                    }
+                    geometry Cylinder {
+                      height 0.04
+                      radius 0.04
+                    }
+                  }
+                ]
+              }
+            ]
+            boundingObject USE STEER
+            physics Physics {
+            }
+          }
+        ]
+        name "left assist steer motor"
+        boundingObject USE STEER
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 0
+        axis 0 0 1
+        anchor 0.08 -0.29 0
+      }
+      device [
+        PositionSensor {
+          name "right assist steering sensor"
+          noise 0.01
+          resolution 0.1
+        }
+        RotationalMotor {
+          name "right assist steering motor"
+          maxVelocity 100
+          minPosition -1.57
+          maxPosition 1.57
+        }
+      ]
+      endPoint Solid {
+        translation 0.08 -0.29 0.0535
+        rotation 0 0 -1 0
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              position 0
+              axis 0 1 0
+            }
+            endPoint Solid {
+              rotation 0 1 0 0
+              children [
+                DEF WHEEL Transform {
+                  rotation 1 0 0 1.5707996938995747
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0 0
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry Cylinder {
+                        height 0.047
+                        radius 0.0535
+                      }
+                    }
+                  ]
+                }
+              ]
+              name "left assist wheel "
+              boundingObject DEF WHEEL Transform {
+                rotation 1 0 0 1.5707996938995747
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 1 0 0
+                      roughness 1
+                      metalness 0
+                    }
+                    geometry Cylinder {
+                      height 0.047
+                      radius 0.0535
+                    }
+                  }
+                ]
+              }
+              physics Physics {
+              }
+            }
+          }
+          Solid {
+            children [
+              DEF STEER Transform {
+                translation 0 0 0.02
+                children [
+                  Shape {
+                    appearance Appearance {
+                    }
+                    geometry Cylinder {
+                      height 0.04
+                      radius 0.04
+                    }
+                  }
+                ]
+              }
+            ]
+            boundingObject USE STEER
+            physics Physics {
+            }
+          }
+        ]
+        name "right assist steer motor"
+        boundingObject USE STEER
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 0.08 0.29 0
+      }
+      device [
+        PositionSensor {
+          name "left steering sensor"
+          noise 0.01
+          resolution 0.1
+        }
+        RotationalMotor {
+          name "left steering motor"
+          maxVelocity 100
+          minPosition -1.57
+          maxPosition 1.57
+        }
+      ]
+      endPoint Solid {
+        translation 0.08 0.29 0.0535
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+            }
+            device [
+              PositionSensor {
+                name "left drive position sensor"
+                noise 0.01
+                resolution 0.1
+              }
+              RotationalMotor {
+                name "left drive wheel motor"
+              }
+            ]
+            endPoint Solid {
+              rotation 0 1 0 0
+              children [
+                DEF WHEEL Transform {
+                  rotation 1 0 0 1.5707996938995747
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0 0
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry Cylinder {
+                        height 0.047
+                        radius 0.0535
+                      }
+                    }
+                  ]
+                }
+              ]
+              name "left drive wheel motor"
+              boundingObject DEF WHEEL Transform {
+                rotation 1 0 0 1.5707996938995747
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 1 0 0
+                      roughness 1
+                      metalness 0
+                    }
+                    geometry Cylinder {
+                      height 0.047
+                      radius 0.0535
+                    }
+                  }
+                ]
+              }
+              physics Physics {
+              }
+            }
+          }
+          Solid {
+            children [
+              DEF STEER Transform {
+                translation 0 0 0.02
+                children [
+                  Shape {
+                    appearance Appearance {
+                    }
+                    geometry Cylinder {
+                      height 0.04
+                      radius 0.04
+                    }
+                  }
+                ]
+              }
+            ]
+            boundingObject USE STEER
+            physics Physics {
+            }
+          }
+        ]
+        name "left steer motor"
+        boundingObject USE STEER
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor -0.08 -0.29 0
+      }
+      device [
+        PositionSensor {
+          name "right steering sensor"
+          noise 0.01
+          resolution 0.1
+        }
+        RotationalMotor {
+          name "right steering motor"
+          maxVelocity 100
+          minPosition -1.57
+          maxPosition 1.57
+        }
+      ]
+      endPoint Solid {
+        translation -0.08 -0.29 0.0535
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 1 0
+            }
+            device [
+              PositionSensor {
+                name "right drive position sensor"
+                noise 0.1
+                resolution 0.1
+              }
+              RotationalMotor {
+                name "right drive wheel motor"
+              }
+            ]
+            endPoint Solid {
+              rotation 0 1 0 0
+              children [
+                DEF WHEEL Transform {
+                  rotation 1 0 0 1.5707996938995747
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0 0
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry Cylinder {
+                        height 0.047
+                        radius 0.0535
+                      }
+                    }
+                  ]
+                }
+              ]
+              name "right drive wheel motor"
+              boundingObject DEF WHEEL Transform {
+                rotation 1 0 0 1.5707996938995747
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 1 0 0
+                      roughness 1
+                      metalness 0
+                    }
+                    geometry Cylinder {
+                      height 0.047
+                      radius 0.0535
+                    }
+                  }
+                ]
+              }
+              physics Physics {
+              }
+            }
+          }
+          USE STEER
+        ]
+        name "right steer motor"
+        boundingObject USE STEER
+        physics Physics {
+        }
+      }
+    }
+    Transform {
+      translation 0 0 0.2035
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry DEF BODY Cylinder {
+            height 0.3
+            radius 0.35
+          }
+        }
+      ]
+    }
+  ]
+  name "my_robot"
+  boundingObject Transform {
+    translation 0 0 0.2035
+    children [
+      USE BODY
+    ]
+  }
+  physics Physics {
+  }
+  controller "<extern>"
+}
